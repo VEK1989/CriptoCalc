@@ -1,5 +1,5 @@
 import { Calc } from './components/Calc/Calc';
-import { Table } from './components/Table/Table';
+import { CryptoTable } from './components/Table/CryptoTable';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -26,7 +26,7 @@ const App = () => {
       <Grid container spacing={3}>
         <Grid item xs={8}>
           <Paper className={classes.paper}>
-            <Table />
+            <CryptoTable />
           </Paper>
         </Grid>
         <Grid item xs={4}>
