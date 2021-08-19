@@ -1,10 +1,9 @@
-import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -64,9 +63,6 @@ export const Calc = () => {
 					</Select>
 				</FormControl>
 			</div>
-			<Typography variant="h4" component="h2" gutterBottom>
-				Result
-			</Typography>
 		</div>
 	);
 };
