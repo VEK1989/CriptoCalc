@@ -4,7 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
-
+import { useTypedSelector } from '../../hooks/useTypedSelector'
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -25,8 +25,19 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export const Calc = () => {
-	const classes = useStyles();
+export const Calc: React.FC = () => {
+	const { currency, error, loading } = useTypedSelector(state => state.currency)
+
+	const classes = useStyles()
+
+	if (loading) {
+		return <h2>Loading...</h2>
+	}
+
+	if (error) {
+		return <h2>{error}</h2>
+	}
+
 	return (
 		<div>
 			<div className={classes.calcBox}>
@@ -35,14 +46,12 @@ export const Calc = () => {
 				</FormControl>
 				<FormControl className={classes.currencyType}>
 					<InputLabel id="demo-simple-select-helper-label">Сurrency</InputLabel>
-					<Select
-						labelId="demo-simple-select-label"
-						id="demo-simple-select"
-						value={10}
-					>
-						<MenuItem value={10}>Ten</MenuItem>
-						<MenuItem value={20}>Twenty</MenuItem>
-						<MenuItem value={30}>Thirty</MenuItem>
+					<Select value={currency[0]} >
+						{
+							currency.map((coin) => {
+								return <MenuItem key={coin.name} value={coin.name} >{coin.name}</MenuItem>
+							})
+						}
 					</Select>
 				</FormControl>
 			</div>
@@ -52,14 +61,12 @@ export const Calc = () => {
 				</FormControl>
 				<FormControl className={classes.currencyType}>
 					<InputLabel id="demo-simple-select-helper-label">Сurrency</InputLabel>
-					<Select
-						labelId="demo-simple-select-label"
-						id="demo-simple-select"
-						value={10}
-					>
-						<MenuItem value={10}>Ten</MenuItem>
-						<MenuItem value={20}>Twenty</MenuItem>
-						<MenuItem value={30}>Thirty</MenuItem>
+					<Select value={currency[0]} >
+						{
+							currency.map((coin) => {
+								return <MenuItem key={coin.name} value={coin.name}>{coin.name}</MenuItem>
+							})
+						}
 					</Select>
 				</FormControl>
 			</div>
