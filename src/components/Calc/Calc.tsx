@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const Calc: React.FC = () => {
 	const { currency, error, loading } = useTypedSelector(state => state.currency)
+	const { coinFirst, coinSecond, valueFirst, valueSecond } = useTypedSelector(state => state.calculate)
 
 	const classes = useStyles()
 
@@ -46,7 +47,7 @@ export const Calc: React.FC = () => {
 				</FormControl>
 				<FormControl className={classes.currencyType}>
 					<InputLabel id="demo-simple-select-helper-label">Сurrency</InputLabel>
-					<Select value={currency[0]} >
+					<Select value={coinFirst.name}>
 						{
 							currency.map((coin) => {
 								return <MenuItem key={coin.name} value={coin.name} >{coin.name}</MenuItem>
@@ -61,7 +62,10 @@ export const Calc: React.FC = () => {
 				</FormControl>
 				<FormControl className={classes.currencyType}>
 					<InputLabel id="demo-simple-select-helper-label">Сurrency</InputLabel>
-					<Select value={currency[0]} >
+					<Select value={coinSecond.name}>
+						<MenuItem value={coinSecond.name}>
+							<em>{coinSecond.name}</em>
+						</MenuItem>
 						{
 							currency.map((coin) => {
 								return <MenuItem key={coin.name} value={coin.name}>{coin.name}</MenuItem>

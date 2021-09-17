@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       padding: theme.spacing(10),
+      backgroundColor: '#a9a9a9'
     },
     paper: {
       padding: theme.spacing(2),

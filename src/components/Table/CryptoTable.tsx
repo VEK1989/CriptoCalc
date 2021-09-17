@@ -16,6 +16,9 @@ const useStyles = makeStyles({
 		width: 20,
 		height: 20,
 		borderRadius: 40
+	},
+	tableRow: {
+		cursor: 'pointer'
 	}
 });
 
@@ -53,7 +56,7 @@ export const CryptoTable: React.FC = () => {
 					</TableHead>
 					<TableBody>
 						{currency.map((coin) => (
-							<TableRow key={coin.name}>
+							<TableRow className={classes.tableRow} hover key={coin.name}>
 								<TableCell component="th" scope="row">
 									<img src={coin.imageUrl} alt="icon" height='20px' width='20px' className={classes.currencyImg} />
 								</TableCell>

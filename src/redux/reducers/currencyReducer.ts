@@ -34,5 +34,3 @@ export const currencyReducer = (state = initialState, action: CurrencyAction): C
 			return state
 	}
 }
-
-// export const setCurrency = (currency: CurrencyAction) => ({ type: SET_CURRENCY, currency })
