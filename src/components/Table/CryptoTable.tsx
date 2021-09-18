@@ -8,6 +8,11 @@ import TableRow from '@material-ui/core/TableRow'
 import { useEffect } from 'react'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { useActions } from '../../hooks/useActions'
+import { useDispatch } from 'react-redux'
+import { setCoinFirst } from '../../redux/action-creators/calculate'
+import { Dispatch } from 'redux'
+import { CalculateAction } from '../../types/calculate'
+
 const useStyles = makeStyles({
 	table: {
 		minWidth: 500,
@@ -23,11 +28,16 @@ const useStyles = makeStyles({
 });
 
 export const CryptoTable: React.FC = () => {
-	const classes = useStyles();
+	const classes = useStyles()
+	const dispatch: Dispatch<CalculateAction> = useDispatch()
 
 	const { currency, error, loading } = useTypedSelector(state => state.currency)
 
 	const { fetchCurrency } = useActions()
+
+	const selectCoin = (coin: string) => {
+		dispatch(setCoinFirst(coin))
+	}
 
 	useEffect(() => {
 		fetchCurrency()
@@ -56,7 +66,7 @@ export const CryptoTable: React.FC = () => {
 					</TableHead>
 					<TableBody>
 						{currency.map((coin) => (
-							<TableRow className={classes.tableRow} hover key={coin.name}>
+							<TableRow className={classes.tableRow} hover key={coin.name} onClick={() => selectCoin(coin.name)} >
 								<TableCell component="th" scope="row">
 									<img src={coin.imageUrl} alt="icon" height='20px' width='20px' className={classes.currencyImg} />
 								</TableCell>

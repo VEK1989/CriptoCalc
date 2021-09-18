@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.text.secondary,
     },
   }),
-);
+)
 
 
 const App = () => {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <Container maxWidth='lg' className={classes.root}>
       <Grid container spacing={3}>

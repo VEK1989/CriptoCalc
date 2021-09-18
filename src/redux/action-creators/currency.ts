@@ -13,7 +13,7 @@ export const fetchCurrency = () => {
 					name: coin.CoinInfo.Name,
 					fullName: coin.CoinInfo.FullName,
 					imageUrl: `https://cryptocompare.com/${coin.CoinInfo.ImageUrl}`,
-					price: coin.RAW.USD.PRICE.toFixed(3),
+					price: coin.RAW.USD.PRICE.toFixed(4),
 					volume24Hour: coin.RAW.USD.VOLUME24HOUR.toFixed(2)
 				}
 				return obj

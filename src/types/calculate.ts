@@ -1,10 +1,12 @@
-import { CoinType } from "./currency";
-
 export interface CalculateState {
-	coinFirst: CoinType,
-	coinSecond: CoinType,
+	coinFirst: string,
+	coinSecond: string,
 	valueFirst: number,
 	valueSecond: number
+}
+
+export interface ChangeCoinValueType {
+	selectValue: string
 }
 
 export enum CalculateActionTypes {
@@ -16,12 +18,12 @@ export enum CalculateActionTypes {
 
 interface SetCoinFirstAction {
 	type: CalculateActionTypes.SET_COIN_FIRST,
-	payload: CoinType
+	payload: string
 }
 
 interface SetCoinSecondAction {
 	type: CalculateActionTypes.SET_COIN_SECOND,
-	payload: CoinType
+	payload: string
 }
 
 interface SetValueFirstAction {

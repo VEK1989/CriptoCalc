@@ -2,21 +2,9 @@ import { CalculateState, CalculateAction, CalculateActionTypes } from './../../t
 
 
 const initialState: CalculateState = {
-	coinFirst: {
-		name: 'BTC',
-		fullName: 'bitcoin',
-		imageUrl: '',
-		price: 0,
-		volume24Hour: 0
-	},
-	coinSecond: {
-		name: 'USD',
-		fullName: 'dollar',
-		imageUrl: '',
-		price: 1,
-		volume24Hour: 0
-	},
-	valueFirst: 0,
+	coinFirst: 'BTC',
+	coinSecond: 'USD',
+	valueFirst: 1,
 	valueSecond: 0
 }
 
