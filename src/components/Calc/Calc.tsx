@@ -9,7 +9,7 @@ import { CalculateAction } from '../../types/calculate'
 import { useDispatch } from 'react-redux'
 import { Dispatch } from 'redux'
 import { setCoinFirst, setCoinSecond, setValueFirst, setValueSecond } from '../../redux/action-creators/calculate'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -46,14 +46,14 @@ export const Calc: React.FC = () => {
 		dispatch(setCoinFirst(coin))
 	}
 
-	const convertCoin = (value: any) => {
-		dispatch(setValueFirst(value))
+	const convertCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
+		dispatch(setValueFirst(Number(e.target.value)))
 	}
 
 	useEffect(() => {
 		const firstPrice = currency.filter(item => item.name === coinFirst)
 		const secondPrice = currency.filter(item => item.name === coinSecond)
-		const convertValue = valueFirst * (firstPrice[0].price / (!secondPrice[0] ? 1 : secondPrice[0].price))
+		const convertValue = valueFirst * ((!firstPrice[0] ? 1 : firstPrice[0].price) / (!secondPrice[0] ? 1 : secondPrice[0].price))
 		dispatch(setValueSecond(convertValue))
 	}, [valueFirst, coinSecond, valueSecond, coinFirst])
 
@@ -70,11 +70,11 @@ export const Calc: React.FC = () => {
 		<div>
 			<div className={classes.calcBox}>
 				<FormControl className={classes.currencyInput}>
-					<TextField value={valueFirst} label="Value" onChange={e => convertCoin(e.target.value)} />
+					<TextField value={valueFirst} label="Value" onChange={convertCoin} />
 				</FormControl>
 				<FormControl className={classes.currencyType}>
 					<InputLabel id="demo-simple-select-helper-label">Сurrency</InputLabel>
-					<Select value={coinFirst} onChange={e => selectFirstCoin(e.target.value)}>
+					<Select value={coinFirst} onChange={(e) => selectFirstCoin(e.target.value)}>
 						{
 							currency.map((coin) => {
 								return <MenuItem key={coin.name} value={coin.name} >{coin.name}</MenuItem>
@@ -89,7 +89,7 @@ export const Calc: React.FC = () => {
 				</FormControl>
 				<FormControl className={classes.currencyType}>
 					<InputLabel id="demo-simple-select-helper-label">Сurrency</InputLabel>
-					<Select onChange={e => selectSecondCoin(e.target.value)} value={coinSecond}>
+					<Select onChange={(e) => selectSecondCoin(e.target.value)} value={coinSecond}>
 						<MenuItem value='USD'>
 							USD
 						</MenuItem>
